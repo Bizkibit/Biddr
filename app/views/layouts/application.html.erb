@@ -15,7 +15,12 @@
     |
     <% if user_signed_in? %>
     |
-    <%= link_to "Sign in" %>
+    <%= link_to "Sign Out", sessions_path, method: :delete %>
+    |
+    Hello <%= current_user.full_name %>
+    <% else %>
+    |
+    <%= link_to "Sign in", new_session_path %>
     <% end  %>
     <%= yield %>
   </body>
