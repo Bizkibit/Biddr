@@ -1,0 +1,18 @@
+<%= link_to '<< Back', auctions_path %>
+
+<h1>Auctions#show</h1>
+
+<h2><%= @auction.title %></h2><br />
+<p><%= @auction.detail %></p>
+
+
+
+<%= form_for [@auction, @bid] do |f| %>
+  <%=f.label :price  %>
+  <%=f.text_area :price %>
+  <%= f.submit %>
+<% end %>
+
+<% @auction.bids.each do |bid| %>
+  <%= bid.price %>
+<% end  %>

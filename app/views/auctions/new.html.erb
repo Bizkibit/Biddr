@@ -1,0 +1,18 @@
+<%= link_to '<< Back', auctions_path %>
+
+<%= form_for @auction do |f| %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :detail %>
+  <%= f.text_area :detail %>
+
+  <%= f.label :end_on, "Ends On" %>
+  <%= f.text_field :end_on %>
+
+  <%= f.label :reserve_price %>
+  <%= f.text_field :reserve_price %>
+
+  <%= f.submit%>
+<% end  %>

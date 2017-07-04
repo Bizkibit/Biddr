@@ -1,0 +1,9 @@
+<%= link_to '<< Back', auctions_path %>
+
+<h1>Auctions#index</h1>
+
+<% @auctions.each do |auction| %>
+  <div class="">
+    <%= link_to auction.title, auction_path(auction) %>
+  </div>
+<% end %>
