@@ -18,7 +18,7 @@
 <% @auction.bids.each do |bid| %>
 <div class="">
   <%= bid.price %>
-  <%= bid.user.full_name %>
+  <%= bid.user&.full_name %>
 </div>
 <hr>
 <% end  %>

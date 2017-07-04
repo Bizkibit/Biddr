@@ -1,17 +1,22 @@
 class BidsController < ApplicationController
+before_action :authenticate_user!, except:[:index, :show]
+
   def create
     @bid = Bid.new bid_params
     @auction = Auction.find params[:auction_id]
     @bid.auction = @auction
     @bid.user = current_user
-    if @bid.save
-      flash[:notice] = "Bid created"
-      redirect_to auction_path(@auction)
+    if !(cannot? :create, @bid)
+      if @bid.save
+        flash[:notice] = "Bid created"
+        redirect_to auction_path(@auction)
 
+      else
+        render "auctions/show"
+      end
     else
-      render "auctions/show"
+      head :unauthorized
     end
-
   end
 
   private

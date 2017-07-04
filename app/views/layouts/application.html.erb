@@ -9,19 +9,29 @@
   </head>
 
   <body>
-    <%= link_to "Home", auctions_path %>
-    |
-    <%= link_to "new Auction", new_auction_path %>
-    |
-    <% if user_signed_in? %>
-    |
-    <%= link_to "Sign Out", sessions_path, method: :delete %>
-    |
-    Hello <%= current_user.full_name %>
-    <% else %>
-    |
-    <%= link_to "Sign in", new_session_path %>
-    <% end  %>
+    <div class="navbar">
+      <%= link_to "Home", auctions_path %>
+      |
+      <%= link_to "new Auction", new_auction_path %>
+      |
+      <% if user_signed_in? %>
+      |
+      <%= link_to "Sign Out", sessions_path, method: :delete %>
+      |
+      Hello <%= current_user.full_name %>
+      <% else %>
+      |
+      <%= link_to "Sign in", new_session_path %>
+      <% end  %>
+    </div>
+    <div id="flash-message">
+      <% if flash[:notice] %>
+        <div class='alert alert-success'><%= flash[:notice] %></div>
+      <% elsif flash[:alert] %>
+        <div class='alert alert-danger'><%= flash[:alert] %></div>
+      <% end %>
+    </div>
+    
     <%= yield %>
   </body>
 </html>

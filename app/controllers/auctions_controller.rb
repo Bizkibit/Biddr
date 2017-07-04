@@ -1,4 +1,6 @@
 class AuctionsController < ApplicationController
+  before_action :authenticate_user!, except:[:index, :show]
+  
   def create
     @auction = Auction.new auction_params
     @auction.user = current_user
