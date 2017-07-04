@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/create'
+
   get 'bids/create'
 
   # get 'auctions/create'

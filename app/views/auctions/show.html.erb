@@ -5,6 +5,8 @@
 <h2><%= @auction.title %></h2><br />
 <p><%= @auction.detail %></p>
 
+<%= @auction.user&.full_name %>
+
 
 
 <%= form_for [@auction, @bid] do |f| %>
