@@ -5,9 +5,26 @@
 <h2><%= @auction.title %></h2><br />
 <p><%= @auction.detail %></p>
 
-<%= @auction.user&.full_name %>
+<div class="Watch button">
+  <%# if (@watch.present? && @watch.persisted?) %>
+  <% if @watch %>
+    <%= link_to fa_icon('eye-slash lg'),
+      # auction_watch_path(@auction, @watch),
+      auction_watch_path(@auction, @watch),
+      method: :delete
+      %>
+  <% else %>
+    <%= link_to fa_icon('eye lg'),
+      auction_watches_path(@auction),
+      method: :post
+      %>
+  <% end %>
+</div>
 
+<p><strong>Created By: </strong><%= @auction.user&.full_name %></p>
 
+<hr>
+<h3>Bids</h3>
 <% if current_user != @auction.user %>
   <%= form_for [@auction, @bid] do |f| %>
     <%=f.label :price  %>
@@ -17,9 +34,12 @@
 <% end  %>
 
 <% @auction.bids.each do |bid| %>
-<div class="">
-  <%= bid.price %>
-  <%= bid.user&.full_name %>
-</div>
-<hr>
+  <div class="">
+    <%= bid.price %>
+    <%= bid.user&.full_name %>
+  </div>
+  <hr>
 <% end  %>
+
+<!-- fa_icon('fa-eye lg') -->
+<!-- fa_icon('fa-eye-slash lg') -->

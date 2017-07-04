@@ -1,6 +1,6 @@
 class AuctionsController < ApplicationController
   before_action :authenticate_user!, except:[:index, :show]
-  
+
   def create
     @auction = Auction.new auction_params
     @auction.user = current_user
@@ -17,6 +17,7 @@ class AuctionsController < ApplicationController
 
   def show
     @auction = Auction.find(params[:id])
+    @watch = @auction.watches.find_by(user: current_user)
     @bid = Bid.new
   end
 

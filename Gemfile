@@ -39,12 +39,13 @@ gem 'faker', github: 'stympy/faker'
 gem 'jquery-rails'
 gem 'chosen-rails'
 gem 'rack-cors'
-gem 'font-awesome-rails'
+gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
 # gem 'simple_form'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'fog'
 gem 'friendly_id', github: 'norman/friendly_id'
+gem 'aasm'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
