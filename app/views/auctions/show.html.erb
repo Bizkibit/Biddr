@@ -8,12 +8,13 @@
 <%= @auction.user&.full_name %>
 
 
-
-<%= form_for [@auction, @bid] do |f| %>
-  <%=f.label :price  %>
-  <%=f.text_area :price %>
-  <%= f.submit %>
-<% end %>
+<% if current_user != @auction.user %>
+  <%= form_for [@auction, @bid] do |f| %>
+    <%=f.label :price  %>
+    <%=f.text_area :price %>
+    <%= f.submit %>
+  <% end %>
+<% end  %>
 
 <% @auction.bids.each do |bid| %>
 <div class="">
