@@ -1,27 +1,36 @@
 <%= link_to '<< Back', auctions_path %>
 
-<h1>Auctions#show</h1>
 
-<h2><%= @auction.title %></h2><br />
-<p><%= @auction.detail %></p>
+<div class="container">
+  <div class="col-lg-8">
+    <h2><%= @auction.title %></h2>
 
-<div class="Watch button">
-  <%# if (@watch.present? && @watch.persisted?) %>
-  <% if @watch %>
-    <%= link_to fa_icon('eye-slash lg'),
+    <p><%= @auction.detail %></p>
+
+    <div class="Watch button">
+      <%# if (@watch.present? && @watch.persisted?) %>
+      <% if @watch %>
+      <%= link_to fa_icon('eye-slash lg'),
       # auction_watch_path(@auction, @watch),
       auction_watch_path(@auction, @watch),
       method: :delete
       %>
-  <% else %>
-    <%= link_to fa_icon('eye lg'),
+      <% else %>
+      <%= link_to fa_icon('eye lg'),
       auction_watches_path(@auction),
       method: :post
       %>
-  <% end %>
-</div>
+      <% end %>
+    </div>
 
-<p><strong>Created By: </strong><%= @auction.user&.full_name %></p>
+    <p><strong>Created By: </strong><%= @auction.user&.full_name %></p>
+  </div>
+  <div class="col-lg-4-offset-8">
+    <p><strong>Current Pirce: </strong></p>
+    <p><strong>Reserve Price: </strong></p>
+  </div>
+
+</div>
 
 <hr>
 <h3>Bids</h3>
