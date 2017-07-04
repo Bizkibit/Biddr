@@ -3,6 +3,7 @@ class BidsController < ApplicationController
     @bid = Bid.new bid_params
     @auction = Auction.find params[:auction_id]
     @bid.auction = @auction
+    @bid.user = current_user
     if @bid.save
       flash[:notice] = "Bid created"
       redirect_to auction_path(@auction)

@@ -9,6 +9,14 @@
   </head>
 
   <body>
+    <%= link_to "Home", auctions_path %>
+    |
+    <%= link_to "new Auction", new_auction_path %>
+    |
+    <% if user_signed_in? %>
+    |
+    <%= link_to "Sign in" %>
+    <% end  %>
     <%= yield %>
   </body>
 </html>
