@@ -13,25 +13,25 @@
   </head>
 
   <body>
-    <div class="navbar">
-      <%= link_to "Home", auctions_path %>
-      |
-      <%= link_to "new Auction", new_auction_path %>
-      |
-      <% if user_signed_in? %>
-      |
-      <%= link_to "Watched Auctions", user_watched_auctions_path(current_user) %>
-      |
-      <%= link_to "Sign Out", sessions_path, method: :delete %>
-      |
-      Hello <%= current_user.full_name %>
-      <% else %>
-      |
-      <%= link_to "Sign in", new_session_path %>
-      |
-      <%= link_to "Sign up", new_user_path %>
-      <% end  %>
-    </div>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <%# link_to 'Biddr', auctions_path, class: 'narbar-brand' %>
+          <a href='/auctions' class='navbar-brand fa fa-rebel fa-2x'> Biddr</a>
+        </div>
+        <ul class='nav navbar-nav'>
+          <li><%= link_to "new Auction", new_auction_path %></li>
+          <% if user_signed_in? %>
+          <li><%= link_to "Watched Auctions", user_watched_auctions_path(current_user) %></li>
+          <li><%= link_to "Sign Out", sessions_path, method: :delete %></li>
+          <li class='active'><a href='#'>Hello <%= current_user.full_name %></a></li>
+          <% else %>
+          <li><%= link_to "Sign in", new_session_path %></li>
+          <li><%= link_to "Sign up", new_user_path %></li>
+          <% end  %>
+        </ul>
+      </div>
+    </nav>
     <div id="flash-message">
       <% if flash[:notice] %>
         <div class='alert alert-success'><%= flash[:notice] %></div>
@@ -43,3 +43,5 @@
     <%= yield %>
   </body>
 </html>
+
+<!-- fa_icon('rebel 2x') -->

@@ -50,7 +50,7 @@
 
     <div class="form-group">
       <%=f.label :price  %>
-      <%=f.text_area :price %>
+      <%=f.text_field :price %>
     </div>
 
       <%= f.submit%>
@@ -63,12 +63,14 @@
         <tr>
           <th>Previous Bids</th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
       <% @bids.each do |bid| %>
       <tr>
         <td>$<%= bid.price %></td>
         <td><%= bid.user&.full_name %></td>
+        <td><%= bid.created_at.to_date%></td>
       </tr>
       <% end  %>
     </table>
