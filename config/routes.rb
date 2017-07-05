@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :auctions do
     resources :bids
     resources :watches, only: [:create, :destroy]
+    resources :publishings, only: :create
   end
 
   resources :users, only: [:create, :new] do

@@ -23,6 +23,11 @@
       <% end %>
     </div>
 
+    <% if !@auction.published? %>
+      <%= link_to "Publish", auction_publishings_path(@auction), class:"btn btn-primary", method: :post %>
+    <% else %>
+      <%= link_to "Published", "#", class:"btn"%>
+    <% end %>
     <p><strong>Created By: </strong><%= @auction.user&.full_name %></p>
   </div>
   <div class="col-lg-4-offset-8">
