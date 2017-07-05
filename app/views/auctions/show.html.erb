@@ -35,7 +35,7 @@
   </div>
   <div class="col-lg-4-offset-8">
     <p><strong>Current Pirce: $<%= @current_price %> </strong></p>
-    <p><strong>Reserve Price: </strong></p>
+    <p><strong>Reserve Price: </strong><%= (@current_price > @auction.reserve_price)? "Met": "Not met" %></p>
   </div>
 
 </div>

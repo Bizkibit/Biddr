@@ -4,18 +4,28 @@ before_action :authenticate_user!, except:[:index, :show]
   def create
     @bid = Bid.new bid_params
     @auction = Auction.find params[:auction_id]
-    @bid.auction = @auction
-    @bid.user = current_user
-    if !(cannot? :create, @bid)
-      if @bid.save
-        flash[:notice] = "Bid created"
-        redirect_to auction_path(@auction)
+    if @auction.bids.present?
+      @current_price = @auction.bids.order(price: :desc).first.price
+    else
+      @current_price = 1
+    end
+    if @bid.price > @current_price
+      @bid.auction = @auction
+      @bid.user = current_user
+      if !(cannot? :create, @bid)
+        if @bid.save
+          flash[:notice] = "Bid created"
+          redirect_to auction_path(@auction)
 
+        else
+          render "auctions/show"
+        end
       else
-        render "auctions/show"
+        head :unauthorized
       end
     else
-      head :unauthorized
+      flash[:alert] = "Bid is lower than current price "
+      redirect_to auction_path(@auction)
     end
   end
 

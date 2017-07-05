@@ -1,9 +1,10 @@
 <%# link_to '<< Back', auctions_path %>
+<div class="container">  
+  <h1>Auctions</h1>
 
-<h1>Auctions</h1>
-
-<% @auctions.each do |auction| %>
+  <% @auctions.each do |auction| %>
   <div class="well">
     <%= link_to auction.title, auction_path(auction) %>
   </div>
-<% end %>
+  <% end %>
+</div>

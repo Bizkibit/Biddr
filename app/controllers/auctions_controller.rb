@@ -19,7 +19,11 @@ class AuctionsController < ApplicationController
     @auction = Auction.find(params[:id])
     @watch = @auction.watches.find_by(user: current_user)
     @bids = @auction.bids.order(price: :desc)
-    @current_price = @bids.first.price
+    if @bids.present?
+     @current_price = @bids.first.price
+    else
+      @current_price = 1
+    end
     @bid = Bid.new
   end
 
