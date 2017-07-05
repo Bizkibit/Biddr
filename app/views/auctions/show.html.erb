@@ -23,37 +23,58 @@
       <% end %>
     </div>
 
-    <% if !@auction.published? %>
-      <%= link_to "Publish", auction_publishings_path(@auction), class:"btn btn-primary", method: :post %>
-    <% else %>
-      <%= link_to "Published", "#", class:"btn"%>
+    <% if @auction.user == current_user %>
+      <% if !@auction.published? %>
+        <%= link_to "Publish", auction_publishings_path(@auction), class:"btn btn-primary", method: :post %>
+      <% else %>
+        <%= link_to "Published", "#", class:"btn"%>
+      <% end %>
     <% end %>
+
     <p><strong>Created By: </strong><%= @auction.user&.full_name %></p>
   </div>
   <div class="col-lg-4-offset-8">
-    <p><strong>Current Pirce: </strong></p>
+    <p><strong>Current Pirce: $<%= @current_price %> </strong></p>
     <p><strong>Reserve Price: </strong></p>
   </div>
 
 </div>
 
 <hr>
-<h3>Bids</h3>
-<% if current_user != @auction.user %>
-  <%= form_for [@auction, @bid] do |f| %>
-    <%=f.label :price  %>
-    <%=f.text_area :price %>
-    <%= f.submit %>
-  <% end %>
-<% end  %>
+<div class="container">
 
-<% @auction.bids.each do |bid| %>
-  <div class="">
-    <%= bid.price %>
-    <%= bid.user&.full_name %>
-  </div>
+  <h3>Bids</h3>
+  <% if current_user != @auction.user %>
+
+    <%= form_for [@auction, @bid] do |f| %>
+
+    <div class="form-group">
+      <%=f.label :price  %>
+      <%=f.text_area :price %>
+    </div>
+
+      <%= f.submit%>
+    <% end %>
+  <% end  %>
   <hr>
-<% end  %>
+  <div class="col-lg-6">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Previous Bids</th>
+          <th></th>
+        </tr>
+      </thead>
+      <% @bids.each do |bid| %>
+      <tr>
+        <td>$<%= bid.price %></td>
+        <td><%= bid.user&.full_name %></td>
+      </tr>
+      <% end  %>
+    </table>
+  </div>
+
+</div>
 
 <!-- fa_icon('fa-eye lg') -->
 <!-- fa_icon('fa-eye-slash lg') -->
