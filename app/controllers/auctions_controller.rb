@@ -22,7 +22,12 @@ class AuctionsController < ApplicationController
   end
 
   def index
-    @auctions = Auction.all
+    if params.has_key? :user_id
+      @user = User.find params[:user_id]
+      @auctions = @user.watched_auctions
+    else
+      @auctions = Auction.all
+    end
   end
 
   private

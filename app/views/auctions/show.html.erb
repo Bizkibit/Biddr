@@ -10,13 +10,13 @@
     <div class="Watch button">
       <%# if (@watch.present? && @watch.persisted?) %>
       <% if @watch %>
-      <%= link_to fa_icon('eye-slash lg'),
+      <%= link_to fa_icon('eye lg'),
       # auction_watch_path(@auction, @watch),
       auction_watch_path(@auction, @watch),
       method: :delete
       %>
       <% else %>
-      <%= link_to fa_icon('eye lg'),
+      <%= link_to fa_icon('eye-slash lg'),
       auction_watches_path(@auction),
       method: :post
       %>

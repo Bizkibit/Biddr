@@ -20,12 +20,16 @@
       |
       <% if user_signed_in? %>
       |
+      <%= link_to "Watched Auctions", user_watched_auctions_path(current_user) %>
+      |
       <%= link_to "Sign Out", sessions_path, method: :delete %>
       |
       Hello <%= current_user.full_name %>
       <% else %>
       |
       <%= link_to "Sign in", new_session_path %>
+      |
+      <%= link_to "Sign up", new_user_path %>
       <% end  %>
     </div>
     <div id="flash-message">

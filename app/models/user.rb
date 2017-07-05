@@ -6,9 +6,9 @@ class User < ApplicationRecord
   has_many :auctions
 
   # has_many :watches, dependent: :destroy
-  # has_many :watched_posts, through: :watches, source: :auction
+  # has_many :watched_auctions, through: :watches, source: :auction
   has_many :watches, dependent: :destroy
-  has_many :auctions, through: :watches
+  has_many :watched_auctions, through: :watches, source: :auction
 
 
   def full_name
