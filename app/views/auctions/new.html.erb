@@ -1,26 +1,11 @@
-<%= link_to '<< Back', auctions_path %>
+<div class="container">
+  <%= simple_form_for @auction do |f| %>
 
-<%= form_for @auction do |f| %>
-<form>
+  <%= f.input :title %>
+  <%= f.input :detail %>
+  <%= f.input :end_on, as: :date, start_year: Date.today.year %>
+  <%= f.input :reserve_price %>
+  <%= f.button :submit%>
 
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :detail %>
-    <%= f.text_area :detail %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :end_on, "Ends On" %>
-    <%= f.date_select :end_on, start_year: Time.now.year, start_month:Time.now.month  %>
-  </div>
-  <div class="form-group">
-    <%= f.label :reserve_price %>
-    <%= f.text_field :reserve_price %>
-  </div>
-    <%= f.submit%>
-</form>
-<% end  %>
+  <% end  %>
+</div>

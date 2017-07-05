@@ -32,7 +32,8 @@ class AuctionsController < ApplicationController
       @user = User.find params[:user_id]
       @auctions = @user.watched_auctions
     else
-      @auctions = Auction.all
+      @auctions = Auction.where(aasm_state: 'published')
+      # @auctions = Auction.all
     end
   end
 
